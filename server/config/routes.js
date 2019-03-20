@@ -24,7 +24,7 @@ module.exports = function(app){
 
     app.delete('/api/recipe/delete/:title', recipesController.deleteRecipe);
 
-    app.put('api/recipe/edit/:title', recipesController.editRecipe);
+    app.put('/api/recipe/edit/:title', recipesController.editRecipe);
 
     app.post('/api/create/comment', commentsController.createComment);
 

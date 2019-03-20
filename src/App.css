@@ -42,31 +42,33 @@
   margin: 0 auto 100px;
   width: 65%;
   border: solid lightgrey;
-  padding: 30px;
+  padding: 20px;
   background-color: white;
 }
 
 .Container p{
-  line-height: 24px;
   margin: 10px 0;
   padding: 10px;
   background: white;
   border: solid lightgrey;
 }
 
-.Container button {
-  line-height: 24px;
+.Container button { 
   margin: 10px 0;
   padding: 10px;
   float: right;
 }
 
 .com{
-  line-height: 24px;
   margin: 30px auto 10px;
   padding: 10px;
   background: white;
   border: solid lightgrey;
   width: 65%;
   text-align: justify;
+}
+
+.Recipe button{
+  margin-top: 5px;
+  float: right;
 }

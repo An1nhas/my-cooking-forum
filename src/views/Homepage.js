@@ -67,11 +67,11 @@ export default class Homepage extends Component {
 
                 <div key={recipe._id}>
               <Row >
-                <Col xs={10}>
+                <Col md={10}>
                 <p>{recipe.title} (posted by:  {recipe.user.name})</p>
                 </Col>
-                <Col xs={2}>
-                <Button outline color="info"><Link style={{color: '#41b0c2', float:'right'}} to={`/recipe/${recipe.title}`}>Check</Link></Button>
+                <Col md={2}>
+                <Button outline color="info"><Link style={{color: '#41b0c2'}} to={`/recipe/${recipe.title}`}>Check</Link></Button>
                 </Col>
               </Row>
                  

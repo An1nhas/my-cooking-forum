@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavLink} from 'reactstrap';
+import { Button, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavLink, NavItem} from 'reactstrap';
 import xhr from 'xhr';
+import { FaBars } from 'react-icons/fa';
 
 
 export default class NavBar extends Component{
@@ -38,12 +39,18 @@ export default class NavBar extends Component{
             <div className="Navbar">
             <Navbar color="light" fixed="top" expand="sm" >
             <NavbarBrand style={{color: '#58b9c4', fontSize: '30px' }}>Welcome {this.state.userName}</NavbarBrand>
-                <NavbarToggler onClick={this.toggle}  />
+                <NavbarToggler onClick={this.toggle}><FaBars style={{color: '#58b9c4', fontSize: '30px' }}/></NavbarToggler>
                     <Collapse isOpen={this.state.isOpen} navbar>
                       <Nav className="ml-auto" navbar>
+                      <NavItem className="ml-auto">
                           <NavLink href="/homepage"><Button outline color="info">Forum</Button></NavLink>
+                      </NavItem>
+                      <NavItem className="ml-auto">
                           <NavLink href="/add"><Button outline color="info">Create Recipe</Button></NavLink>
+                      </NavItem>
+                      <NavItem className="ml-auto">
                           <NavLink href="/logout"><Button color="info">Logout</Button></NavLink>
+                      </NavItem>
                       </Nav>
                     </Collapse>
             </Navbar>

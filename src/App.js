@@ -14,12 +14,12 @@ export default class App extends Component {
         <BrowserRouter>  
             <div className="App">
             <Switch>
-                <Route path="/" exact component={LogReg} />
-                <Route path="/homepage" exact component={Homepage} />
-                <Route path="/logout" exact component={Logout} />
-                <Route path="/recipe/:title" exact component={Recipe} />
-                <Route path="/add" exact component={Add} />
-                <Route path="/recipe/edit/:title" exact component={Edit} />
+                <Route exact path="/" component={LogReg} />
+                <Route exact path="/homepage" component={Homepage} />
+                <Route exact path="/logout" component={Logout} />
+                <Route exact path="/recipe/:title" component={Recipe} />
+                <Route exact path="/add" component={Add} />
+                <Route exact path="/recipe/edit/:title" component={Edit} />
             </Switch>
             </div>
         </BrowserRouter>

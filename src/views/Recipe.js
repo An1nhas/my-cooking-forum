@@ -104,11 +104,11 @@ export default class Recipe extends Component{
                 <h1 style={Title}>{this.state.title}</h1>
                 <p>{this.state.description}</p>
                 <Row>
-                  <Col xs={8}></Col>
-                  <Col xs={2}>
+                  <Col md={10}></Col>
+                  <Col md={1}>
                   <Button outline color="secondary" type="submit" onClick={this.deleteRecipe}>Delete</Button>
                   </Col>
-                  <Col xs={2}>
+                  <Col md={1}>
                   <Button outline color="info" type="submit" ><Link style={{color: '#41b0c2'}} to={`/recipe/edit/${this.state.title}`}>Edit</Link></Button>
                   </Col>
                 </Row>

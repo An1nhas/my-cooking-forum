@@ -21,7 +21,18 @@ export default class Homepage extends Component {
     this.setState({[event.target.name]: event.target.value});
   }
 
-
+     
+  componentDidMount=()=>{
+    let title = this.props.match.params.title;
+    axios.get(`/api/recipe/${title}`)
+    .then(res => {
+      console.log(res);
+      this.setState({title: res.data.title, description: res.data.description})
+    })
+    .catch(err => {
+      console.log(err);
+    });
+} 
   
   sendForm = (event) => {
     event.preventDefault();
@@ -31,14 +42,14 @@ export default class Homepage extends Component {
     }
     else{
         let title = this.props.match.params.title;
-        axios.put('api/recipe/edit/' + title, {json:true, body:this.state}, (err, res)=>{
-        console.log('The response: ', res);
-        if(res.body.ok) {
-          window.location = "/homepage";
-        }else{
-          this.setState({errors: "Server error!"});
-        }
+        console.log(title);
+        axios.put('/api/recipe/edit/' + title, {title:this.state.title, description: this.state.description})
+      .then(res => {
+        console.log(res);
       })
+      .catch(err => {
+        console.log(err);
+      });
     }
   }
 
@@ -77,7 +88,7 @@ export default class Homepage extends Component {
           <p>Description</p>
             <Input type="textarea" style={{height:'200px'}} name="description" onChange={this.updateValue} value={this.state.description} placeholder="Write your recipe here..."/>  
           </FormGroup>
-            <Button color="info" Type="submit" onClick={this.sendForm}>Update</Button>
+            <Button color="info" type="submit" onClick={this.sendForm}>Update</Button>
         </Form>
           </div>
           </div>
