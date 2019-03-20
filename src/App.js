@@ -1,28 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch} from 'react-router-dom';
+import LogReg from './views/LogReg';
+import Homepage from './views/Homepage';
+import Logout from './views/Logout';
+import Recipe from './views/Recipe';
+import Add from './views/Add';
+import Edit from './views/Edit';
 import './App.css';
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+        <BrowserRouter>  
+            <div className="App">
+            <Switch>
+                <Route path="/" exact component={LogReg} />
+                <Route path="/homepage" exact component={Homepage} />
+                <Route path="/logout" exact component={Logout} />
+                <Route path="/recipe/:title" exact component={Recipe} />
+                <Route path="/add" exact component={Add} />
+                <Route path="/recipe/edit/:title" exact component={Edit} />
+            </Switch>
+            </div>
+        </BrowserRouter>
     );
   }
-}
+};
 
-export default App;
