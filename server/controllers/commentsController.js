@@ -22,20 +22,24 @@ function createComment(req, res, next){
 
 
 function getAllComments(req, res, next){
-    console.log(req.body.title)
     Comment.find({title : req.body.title} ,(err, comments) => {
         if(err) {
             console.log('Error getting comments: ', err);
            return next();
         }
-       console.log(req.body)
         res.json(comments);
     });
 };
 
+function deleteComment(req, res, next){
+    Comment.findOneAndDelete({ _id: req.params.id })
+    .then(deletedOne => res.send(deletedOne))
+    .catch(err => {res.send(err)});
+}
 
 
 module.exports = {
    createComment,
-   getAllComments
+   getAllComments,
+   deleteComment
 };

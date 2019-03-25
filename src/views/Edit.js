@@ -46,6 +46,7 @@ export default class Homepage extends Component {
         axios.put('/api/recipe/edit/' + title, {title:this.state.title, description: this.state.description})
       .then(res => {
         console.log(res);
+        window.location.href="/homepage";
       })
       .catch(err => {
         console.log(err);

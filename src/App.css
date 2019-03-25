@@ -46,11 +46,16 @@
   background-color: white;
 }
 
-.Container p{
+.Container h6{
   margin: 10px 0;
-  padding: 10px;
+  padding:2px 10px;
   background: white;
   border: solid lightgrey;
+}
+
+.Container p{
+  margin: 0;
+  padding: 2px;
 }
 
 .Container button { 
@@ -70,5 +75,12 @@
 
 .Recipe button{
   margin-top: 5px;
-  float: right;
+}
+
+@media screen and (max-width: 1260px) {
+  button{ 
+    font-size: 10px !important;
+    margin: 0;
+    padding: 0;
+  }
 }

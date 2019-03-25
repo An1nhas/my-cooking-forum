@@ -30,5 +30,6 @@ module.exports = function(app){
 
     app.post('/api/comments', commentsController.getAllComments);
     
+    app.delete('/api/comment/delete/:id', commentsController.deleteComment);
 };
     

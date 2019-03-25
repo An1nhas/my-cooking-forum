@@ -19,7 +19,7 @@ function createRecipe(req, res, next){
 
 
 function getOneRecipe(req, res, next){
-    Recipe.findOne({title:req.params.title}, ['title', 'description', 'comment'],(err, recipe) =>{
+    Recipe.findOne({title:req.params.title},(err, recipe) =>{
         
         if(err) {
             console.log('Error getting the article: ', recipe);
@@ -31,7 +31,7 @@ function getOneRecipe(req, res, next){
 
 
 function getAllRecipes(req, res, next){
-    Recipe.find({}, ['title','comment','user'], (err, recipes) => {
+    Recipe.find({}, (err, recipes) => {
         if(err) {
             console.log('Error getting recipes: ', err);
            return next();

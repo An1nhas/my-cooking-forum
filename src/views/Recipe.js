@@ -15,9 +15,10 @@ export default class Recipe extends Component{
           title:'',
           description: '',
           comments:[],
-          errors: '',
-          comment: '',
-          user:{}     
+          errors:'',
+          comment:'',
+          user:{},
+          userName:''    
         }
     }
 
@@ -28,7 +29,6 @@ export default class Recipe extends Component{
   }
   
   sendForm = (event) => {
-    console.log('event', event)
     event.preventDefault();
     this.setState({errors: ''});
       xhr.post('/api/create/comment', {json:true, body:{comment: this.state.comment, title: this.state.title}}, (err, res)=>{
@@ -36,15 +36,15 @@ export default class Recipe extends Component{
         if(res.body.ok) {
           console.log('comment successful')
           var comments = this.state.comments
-          comments.push({comment: this.state.comment, user: this.state.user})
-          this.setState(
-            {
-              comment: '',
-              comments,
-              user: {
-                name:''
-              }
-            })
+          comments.push({comment: this.state.comment, user: this.state.userName}) 
+          let title = this.props.match.params.title;
+          xhr.post(`/api/comments`, {json: true, body: {title}} ,(req, res)=>{
+          if(res.statusCode === 401) return window.location = '/';
+          if(res.body) {
+            this.setState({comments: res.body});
+          }
+          
+   });
         }else{
           this.setState({errors: "Server error!"});
         }
@@ -59,9 +59,15 @@ export default class Recipe extends Component{
     });
     xhr.post(`/api/comments`, {json: true, body: {title}} ,(req, res)=>{
      if(res.statusCode === 401) return window.location = '/';
-     this.setState({comments: res.body,});
+     this.setState({comments: res.body});
     });
+    xhr.get('/api/user', {json: true}, (err, res)=>{
+      if(res.statusCode === 401) return window.location = '/';
+      this.setState({userName: res.body.userName});
+    })
 } 
+
+
 
 
     deleteRecipe = () => {
@@ -70,6 +76,19 @@ export default class Recipe extends Component{
       .then((res)=>{
         console.log(res)
         window.location.href = "/homepage";
+      }).catch((err)=>{
+        console.log(err)
+      })
+    }
+
+
+    
+    deleteComment = (id) => {
+      const title = this.props.match.params.title;
+      axios.delete(`/api/comment/delete/${id}`)
+      .then((res)=>{
+        console.log(res)
+        window.location.href = `/recipe/${title}`;
       }).catch((err)=>{
         console.log(err)
       })
@@ -103,27 +122,36 @@ export default class Recipe extends Component{
             <div className="Recipe">    
                 <h1 style={Title}>{this.state.title}</h1>
                 <p>{this.state.description}</p>
-                <Row>
-                  <Col md={10}></Col>
-                  <Col md={1}>
+                {this.state.user.name === this.state.userName ? (
+                  
+                    <Row>
+                  <Col md={8}></Col>
+                  <Col md={2}>
                   <Button outline color="secondary" type="submit" onClick={this.deleteRecipe}>Delete</Button>
                   </Col>
-                  <Col md={1}>
+                  <Col md={2}>
                   <Button outline color="info" type="submit" ><Link style={{color: '#41b0c2'}} to={`/recipe/edit/${this.state.title}`}>Edit</Link></Button>
                   </Col>
                 </Row>
+                  ):<span></span>
+                }
+                
                     </div>
             <div className="Response" >  
-            { this.state.comments && this.state.comments.map((com)=>{
+            { this.state.comments ? this.state.comments.map((com)=>{
               return(
                 <div key={com._id}>
               <div className="com">                    
                 <p>{com.comment}</p>
-                <p style={{fontSize: '11px'}}>(posted by:  {com.user.name}) </p>
-       </div>
+                <p style={{fontSize: '12px'}}>(posted by:  {com.user.name}, {com.created_at.slice(0,10)} at {com.created_at.slice(11,16)})</p>
+                {com.user.name === this.state.userName ? (
+                <Button outline color="secondary" size="sm" type="submit" id={com} onClick={(e)=>this.deleteComment(com._id, e)}>Delete</Button>
+                ):<span></span>
+              }
+              </div>
                 </div>
               )
-            })}
+            }) : <p>No comments</p>}
            </div>
             <div className="CommentForm">
                     <p>Comment</p>

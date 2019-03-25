@@ -27,7 +27,7 @@ export default class Homepage extends Component {
         window.location.href = '/';
       }
       else{
-        console.log(res.statusCode)
+        console.log(res)
         this.setState({recipes: res.body.reverse()});
       }   
     })
@@ -66,9 +66,10 @@ export default class Homepage extends Component {
               return(
 
                 <div key={recipe._id}>
+                {console.log(recipe)}
               <Row >
                 <Col md={10}>
-                <p>{recipe.title} (posted by:  {recipe.user.name})</p>
+                <h6>{recipe.title} <p style={{fontSize:'12px'}}> (posted by:  {recipe.user.name}, {recipe.created_at.slice(0,10)} at {recipe.created_at.slice(11,16)})</p></h6>
                 </Col>
                 <Col md={2}>
                 <Button outline color="info"><Link style={{color: '#41b0c2'}} to={`/recipe/${recipe.title}`}>Check</Link></Button>
