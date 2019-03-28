@@ -28,4 +28,6 @@ require('./config/routes.js')(app);
 
 
 
-app.listen(9000, ( ) => console.log('Sever running on port 9000'));
+app.listen(process.env.PORT || 3000, () => {
+    console.log("server listening");
+});
