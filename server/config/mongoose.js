@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 let fs = require('fs');
 
-mongoose.connect('mongodb://localhost/cooking', { useNewUrlParser: true});
+mongoose.connect('mongodb+srv://Ana_Oliveira:github2018@cluster0-55ro8.mongodb.net/cooking?retryWrites=true', { useNewUrlParser: true});
 
 
 //load all the model files
