@@ -1,6 +1,10 @@
 {
   "name": "cooking",
   "version": "0.1.0",
+  "engines": {
+    "node": "v11.8.0",
+    "npm": "6.x"
+  },
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
@@ -16,6 +20,7 @@
     "file-system": "^2.2.2",
     "http-proxy-middleware": "^0.19.1",
     "mongoose": "^5.4.12",
+    "node": "^12.4.0",
     "react": "^16.8.2",
     "react-art": "^16.8.3",
     "react-bootstrap": "^1.0.0-beta.5",
