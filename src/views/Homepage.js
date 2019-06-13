@@ -66,7 +66,6 @@ export default class Homepage extends Component {
               return(
 
                 <div key={recipe._id}>
-                {console.log(recipe)}
               <Row >
                 <Col md={10}>
                 <h6>{recipe.title} <p style={{fontSize:'12px'}}> (posted by:  {recipe.user.name}, {recipe.created_at.slice(0,10)} at {recipe.created_at.slice(11,16)})</p></h6>

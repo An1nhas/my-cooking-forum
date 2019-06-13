@@ -42,7 +42,6 @@ export default class Homepage extends Component {
     }
     else{
         let title = this.props.match.params.title;
-        console.log(title);
         axios.put('/api/recipe/edit/' + title, {title:this.state.title, description: this.state.description})
       .then(res => {
         console.log(res);

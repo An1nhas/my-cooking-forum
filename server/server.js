@@ -9,10 +9,8 @@ app.use(bodyParser.json());
 
 
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: ["https://cooking-forum.herokuapp.com","http://localhost:3000"],
     methods: ["GET","HEAD","PUT","PATCH","POST","DELETE"],
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
     credentials:true
   }))
 
@@ -28,6 +26,6 @@ require('./config/routes.js')(app);
 
 
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT || 9000, () => {
     console.log("server listening");
 });

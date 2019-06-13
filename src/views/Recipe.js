@@ -32,19 +32,16 @@ export default class Recipe extends Component{
     event.preventDefault();
     this.setState({errors: ''});
       xhr.post('/api/create/comment', {json:true, body:{comment: this.state.comment, title: this.state.title}}, (err, res)=>{
-        console.log('The response: ', res.body);
         if(res.body.ok) {
-          console.log('comment successful')
           var comments = this.state.comments
           comments.push({comment: this.state.comment, user: this.state.userName}) 
           let title = this.props.match.params.title;
           xhr.post(`/api/comments`, {json: true, body: {title}} ,(req, res)=>{
-          if(res.statusCode === 401) return window.location = '/';
-          if(res.body) {
-            this.setState({comments: res.body});
-          }
-          
-   });
+            if(res.statusCode === 401) return window.location = '/';
+            if(res.body) {
+              this.setState({comments: res.body});
+            }
+          });
         }else{
           this.setState({errors: "Server error!"});
         }

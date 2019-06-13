@@ -3,7 +3,6 @@ let fs = require('fs');
 
 mongoose.connect('mongodb+srv://Ana_Oliveira:github2018@cluster0-55ro8.mongodb.net/cooking?retryWrites=true', { useNewUrlParser: true});
 
-
 //load all the model files
 var models_path = __dirname + "/../models"
 

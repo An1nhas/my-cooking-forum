@@ -3,10 +3,7 @@ let Comment = mongoose.model('Comment');
 
 
 function createComment(req, res, next){
-    console.log("req body", req.body.title)
-    console.log("req body", req.body.comment)
     let comment = new Comment(req.body);
-    console.log('before assignment')
     comment.user ={
         name: req.session.user.username
     }

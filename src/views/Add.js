@@ -31,7 +31,6 @@ export default class Homepage extends Component {
     }
     else{
       xhr.post('/api/create', {json:true, body:this.state}, (err, res)=>{
-        console.log('The response: ', res);
         if(res.body.ok) {
           window.location = "/homepage";
         }else{
@@ -74,7 +73,7 @@ export default class Homepage extends Component {
           <p>Description</p>
             <Input type="textarea" style={{height:'200px'}} name="description" onChange={this.updateValue} value={this.state.description} placeholder="Write your recipe here..."/>  
           </FormGroup>
-            <Button color="info" Type="submit" onClick={this.sendForm}>Share</Button>
+            <Button color="info" type="submit" onClick={this.sendForm}>Share</Button>
         </Form>
           </div>
           </div>
